@@ -1,26 +1,27 @@
-const person = {
-    name: "Akhil Chandran",
-    age: 32,
-    hobbies: ['swimming', 'dansing', 'pool', 'chess'],
-    greeting: function (){
-        alert("you are years old, so you can have these hobbies");
+const addMovieBtn = document.getElementById("add-movie-btn");
+const searchBtn = document.getElementById("search-btn");
+
+const movies = [];
+
+const addMovieHandler = () => {
+    const title = document.getElementById("title").value.trim();
+    const extraName = document.getElementById("extra-name").value.trim();
+    const extraValue = document.getElementById("extra-value").value.trim();
+
+    if (title === '' || extraName === '' || extraValue === ''){
+        alert('Please enter a value !!');
         
+    } else {
+        const newMovie = {
+            info: {
+                title,
+                [extraName]: extraValue
+            },
+            id: Math.random()
+        };
+        movies.push(newMovie);
+        console.log(movies);
     }
-}
+};
 
-
-// print object property name
-console.log(person.name)
-
-// adding new property to person object
-person.gender = "male";
-console.log(person);
-
-// deleting greeting property from person object
-delete person.greeting;
-// NOTE:( person.greeting = undefined ) will delete the property just like above line of code
-console.log(person);
-
-// addind new STRING property to object
-person["monthely salary"] = 3500;
-console.log(person);
+addMovieBtn.addEventListener('click', addMovieHandler);
